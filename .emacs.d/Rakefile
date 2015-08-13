@@ -10,6 +10,6 @@ namespace :emacs do
 			FileUtils.remove_entry(installation_target)
 		end
 
-		File.symlink(File.join(File.dirname(__FILE__)), File.join(installation_target))
+		File.symlink(File.dirname(__FILE__), installation_target)
 	end
 end
