@@ -1,18 +1,14 @@
 # Compiled
 *.elc
-
-# Hide special local stuff.
-elpa/
-url/
-smex-items
-session.*
-auto-save-list/
-
-tramp
-*.dat
-
-# Packaging
-.cask
 *.elc~
 
+elpa/
+
+# Potentially-sensitive session data.
+smex-items
+session.*
+tramp
+*.dat
+auto-save-list/
+url/
 *ido.last*
