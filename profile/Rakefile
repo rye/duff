@@ -1,0 +1,15 @@
+require "fileutils"
+require "securerandom"
+
+namespace :profile do
+	desc "Install the .profile file"
+	task :install do
+		installation_target = File.join(Dir.home, ".profile")
+
+		if File.exist?(installation_target)
+			FileUtils.remove_entry(installation_target)
+		end
+
+		File.symlink(File.join(File.dirname(__FILE__), ".profile"), installation_target)
+	end
+end
