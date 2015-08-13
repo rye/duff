@@ -5,11 +5,12 @@
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-(setq -dependency-list- '(smart-tabs-mode smex magit gitignore-mode web-mode solarized-theme frame-fns coffee-mode haskell-mode markdown-mode jazz-theme ample-theme smartparens))
-(setq -recommendation-list- '(multi-term))
+(setq packages--dependency-list '(solarized-theme))
+
+(setq packages--recommendation-list '(nyan-mode rspec-mode yaml-mode multi-term smartparens ample-theme jazz-theme markdown-mode haskell-mode coffee-mode frame-fns solarized-theme web-mode gitignore-mode magit smex smart-tabs-mode))
 
 ;; Installs the dependencies.
-(defun -install-dependencies- (&optional all)
+(defun packages-install-dependencies (&optional all)
   "Installs the dependencies for this Emacs configuration.
 
 If ALL is non-nil or a package in the dependency list is not
@@ -17,9 +18,9 @@ installed, the package gets installed."
 
   (interactive "*")
 
-  (-install--package-list- -dependency-list- all))
+  (packages--install-package-list packages--dependency-list all))
 
-(defun -update-packages- (&optional all)
+(defun packages-upgrade (&optional all)
   "Updates all packages currently installed on the system."
 
   (interactive "*")
@@ -29,8 +30,10 @@ installed, the package gets installed."
     (package-menu-mark-upgrades)
     (package-menu-execute (yes-or-no-p "Execute package update without querying? "))))
 
-(defun -install--package-list- (package-list &optional all)
+(defun packages--install-package-list (package-list &optional all)
   "Installs a list of packages."
+
+  (package-refresh-contents)
 
   (mapc (lambda (package)
           (progn
@@ -40,9 +43,9 @@ installed, the package gets installed."
 
   t)
 
-(defun -install-recommended-packages- (&optional all)
+(defun packages-install-recommendations (&optional all)
   "Installs the recommended packages for this Emacs configuration."
 
   (interactive "*")
 
-  (-install--package-list- -recommendation-list- all))
+  (packages--install-package-list packages--recommendation-list all))
