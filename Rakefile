@@ -1,15 +1,9 @@
 require "fileutils"
-require "securerandom"
 
-namespace :emacs do
-	desc "Install the Emacs configuration"
-	task :install do
-		installation_target = File.join(Dir.home, ".emacs.d")
+RAKEFILES = Dir.glob(File.join(File.dirname(__FILE__), "*", "Rakefile"), File::FNM_DOTMATCH)
 
-		if File.exist?(installation_target)
-			FileUtils.remove_entry(installation_target)
-		end
-
-		File.symlink(File.join(File.dirname(__FILE__), ".emacs.d"), File.join(installation_target))
+RAKEFILES.each do |rakefile|
+	if !FileUtils.identical?(rakefile, __FILE__)
+		load rakefile
 	end
 end
