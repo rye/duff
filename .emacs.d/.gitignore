@@ -1,0 +1,18 @@
+# Compiled
+*.elc
+
+# Hide special local stuff.
+elpa/
+url/
+smex-items
+session.*
+auto-save-list/
+
+tramp
+*.dat
+
+# Packaging
+.cask
+*.elc~
+
+*ido.last*
