@@ -1,5 +1,5 @@
-;; Use a tab size of 4
-(setq global-tab-width 4)
+;; Use a tab size of 2
+(setq global-tab-width 2)
 (setq-default tab-width global-tab-width)
 (setq-default indent-tabs-mode nil)
 
