@@ -2,22 +2,36 @@
 (setq custom-safe-themes t)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
-;; The themes.
-(setq -light-theme- 'solarized-light)
-(setq -dark-theme- 'solarized-dark)
+(defvar interface-theme-switcher--current-pair '())
+(defvar interface-theme-switcher--alist '())
 
-;; Load the dark theme.
-(setq -current-theme- -dark-theme-)
-(load-theme -current-theme-)
+(defun interface-theme-switcher--preload (alist &optional no-confirm)
+  (dolist (target alist)
+    (progn
+      (add-to-list 'interface-theme-switcher--alist target)
+      (load-theme (cdr target) no-confirm t))))
 
-;; Custom theme configurations.
-(cond ((or (string= -current-theme- 'solarized-dark)
-	   (string= -current-theme- 'solarized-light))
-       (progn
-	 (setq x-underline-at-descent-line t)))
-      (t
-       nil))
+(interface-theme-switcher--preload '((light . solarized-light)
+                                     (dark . solarized-dark)))
 
+(defun interface-theme-switcher--customize ()
+  (cond ((or (string= (cdr interface-theme-switcher--current-pair) 'solarized-dark)
+             (string= (cdr interface-theme-switcher--current-pair) 'solarized-light))
+         (progn
+           (setq x-underline-at-descent-line t)))
+        (t
+         nil)))
+
+(defun interface-theme-switcher--change-to (name)
+  (interactive "SSwitch to: ")
+  (dolist (target interface-theme-switcher--alist)
+    (disable-theme (cdr target)))
+  (let ((assoc (assoc name interface-theme-switcher--alist)))
+    (setq interface-theme-switcher--current-pair assoc)
+    (enable-theme (cdr assoc)))
+  (interface-theme-switcher--customize))
+
+(interface-theme-switcher--change-to 'dark)
 
 ;; Enable column numbering.
 (line-number-mode 1)
