@@ -84,9 +84,9 @@
             (setq web-mode-enable-control-block-indentation nil)
             (setq web-mode-script-padding 0)
 
-            (setq web-mode-markup-indent-offset 4)
-            (setq web-mode-css-indent-offset 4)
-            (setq web-mode-code-indent-offset 4)
+            (setq web-mode-markup-indent-offset global-tab-width)
+            (setq web-mode-css-indent-offset global-tab-width)
+            (setq web-mode-code-indent-offset global-tab-width)
 
             (add-hook 'web-mode-hook
                       (lambda () (setq indent-tabs-mode t)))))))
