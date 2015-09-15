@@ -15,7 +15,8 @@ Another suggestion is to modify the Emacs.app file to make it use the command-li
 
 1. Create a new empty shell script in `/usr/local/Cellar/emacs/HEAD/Emacs.app/Contents/MacOS/` and mark it as executable with the same permissions as the other files in this directory (in this example, it is named `Emacs_via_shell.sh`).
 
-2. Set the header/exec-line to `#!/bin/bash`, and change the first line to `/usr/local/Cellar/emacs/HEAD/bin/emacs "$@"`
+2. Set the header/exec-line to `#!/bin/sh`, and change the first line to `echo '/usr/local/Cellar/emacs/HEAD/bin/emacs "$@"' | sh --login -s "$@"`.
+This will run the command using the `~/.profile` file as the appropriate file, and, if we're using Duff's `~/.profile`, we should have the necessary environment information necessary to make informed decisions.
 
 3. Edit the `Info.plist` file in the `/usr/local/Cellar/emacs/HEAD/Emacs.app/Contents/` directory and change the value of `CFBundleExecutable` to the name of your new shell script.
 
