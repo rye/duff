@@ -85,3 +85,5 @@
 ;; Some magit configuration variables.
 (setq magit-push-always-verify nil)
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+(require 'whitespace)
