@@ -1,7 +1,8 @@
-# Compiled
+# Compiled, backup files.
 *.elc
 *.elc~
 
+# Installed packages
 elpa/
 
 # Potentially-sensitive session data.
