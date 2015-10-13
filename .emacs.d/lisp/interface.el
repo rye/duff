@@ -12,7 +12,9 @@
       (load-theme (cdr target) no-confirm t))))
 
 (interface-theme-switcher--preload '((light . solarized-light)
-                                     (dark . solarized-dark)))
+                                     (dark . solarized-dark)
+                                     (greyscale-dark . tao-yin)
+                                     (greyscale-light . tao-yang)))
 
 (defun interface-theme-switcher--customize ()
   (cond ((or (string= (cdr interface-theme-switcher--current-pair) 'solarized-dark)
