@@ -16,3 +16,6 @@
                      "$SHELL -cl \"printf %s \\\"\\\$PATH\\\"\"")))
           (setenv "PATH" path)
           (setq exec-path (split-string (getenv "PATH") ":"))))))
+
+(if (eq system-type 'darwin)
+    (configuration-internals--mac-os-x-fixup-path))
