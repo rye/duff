@@ -69,7 +69,6 @@
 (add-to-list 'after-make-frame-functions #'create-prog-mode-hook-linum-mode-enabler)
 
 
-
 ;; Get rid of the fringes.
 (fringe-mode '(0 . 0))
 
