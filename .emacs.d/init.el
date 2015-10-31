@@ -22,6 +22,7 @@
 (add-to-list 'load-path "~/.emacs.d/etc/")
 (add-to-list 'load-path "~/Emacs Lisp/")
 (add-to-list 'load-path "~/elisp/")
+(add-to-list 'load-path "~/.emacs-local/")
 
 ;; Shorthand for loading files using symbols.
 (defun l (file-or-symbol &optional noerror nomessage nosuffix must-suffix)
