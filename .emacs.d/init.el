@@ -22,6 +22,7 @@
 (add-to-list 'load-path "~/.emacs.d/etc/")
 (add-to-list 'load-path "~/Emacs Lisp/")
 (add-to-list 'load-path "~/elisp/")
+(add-to-list 'load-path "~/.emacs-local/")
 
 ;; Shorthand for loading files using symbols.
 (defun l (file-or-symbol &optional noerror nomessage nosuffix must-suffix)
@@ -46,6 +47,7 @@ In either case, passes remaining arguments to load."
 (l 'autosave)
 (l 'completion)
 (l 'code)
+(l 'duff-local 'noerror 'nomessage)
 
 ;; Load the LilyPond Emacs mode.
 (l 'lilypond-init t)
