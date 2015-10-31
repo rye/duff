@@ -47,6 +47,7 @@ In either case, passes remaining arguments to load."
 (l 'autosave)
 (l 'completion)
 (l 'code)
+(l 'duff-local 'noerror 'nomessage)
 
 ;; Load the LilyPond Emacs mode.
 (l 'lilypond-init t)
