@@ -1,10 +1,10 @@
-require "fileutils"
-require "securerandom"
+require 'fileutils'
+require 'securerandom'
 
 namespace :emacs do
-	desc "Install the Emacs configuration"
+	desc 'Install the Emacs configuration'
 	task :install do
-		installation_target = File.join(Dir.home, ".emacs.d")
+		installation_target = File.join(Dir.home, '.emacs.d')
 
 		if File.exist?(installation_target)
 			FileUtils.remove_entry(installation_target)

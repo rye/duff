@@ -1,0 +1,8 @@
+ls
+. ~/.zshrc
+ls
+cd ..
+ls
+cd ..
+cd ..
+env

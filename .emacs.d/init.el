@@ -7,10 +7,7 @@
 (if (fboundp 'set-horizontal-scroll-bar-mode) (set-horizontal-scrollbar-mode nil))
 
 (setq inhibit-startup-message t
-      initial-scratch-message ";; This is a scratch buffer.
-;;
-;; Use it for work, for play, or don't use it.  It's pretty lonely,
-;; being a scratch buffer.
+      initial-scratch-message ";; Emacs-Lisp Scratch Buffer
 
 "
       echo-keystrokes 0.1

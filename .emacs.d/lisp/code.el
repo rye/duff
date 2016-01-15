@@ -2,7 +2,6 @@
 (setq global-tab-width 2)
 (setq-default tab-width global-tab-width)
 (setq-default indent-tabs-mode nil)
-
 (setq-default backward-delete-char-untabify-method nil)
 
 (if (require 'smart-tabs-mode nil 'no-error)
@@ -67,6 +66,8 @@
 
       (if (require 'web-mode nil 'no-error)
           (progn
+            (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+            (add-to-list 'auto-mode-alist '("\\.sass\\'" . web-mode))
             (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
             (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
             (add-to-list 'auto-mode-alist '("\\.jsonp?\\'" . web-mode))

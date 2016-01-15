@@ -42,6 +42,7 @@ then
 	PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 	PATH="$(brew --prefix ruby)/bin:$PATH"
 	PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+	PATH="/usr/local/sbin:$PATH"
 fi
 
 export PATH
