@@ -1,6 +1,8 @@
 ;; Use a tab size of 2
 (setq global-tab-width 2)
 (setq-default tab-width global-tab-width)
+(setq-default smie-indent-basic global-tab-width)
+
 (setq-default indent-tabs-mode nil)
 (setq-default backward-delete-char-untabify-method nil)
 
