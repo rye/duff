@@ -57,7 +57,7 @@
 (setq uniquify-buffer-name-style 'forward
       uniquify-separator ":")
 
-(setq linum-format " %d ")
+(setq linum-format "\x2007%d\x2007")
 
 (defun create-prog-mode-hook-linum-mode-enabler (&optional _)
   "Creates a prog-mode-hook that starts linum-mode"
