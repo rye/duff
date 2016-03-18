@@ -45,4 +45,9 @@ then
 	PATH="/usr/local/sbin:$PATH"
 fi
 
+if [ -f "$HOME/.local/.profile" ];
+then
+	source $HOME/.local/.profile
+fi
+
 export PATH
