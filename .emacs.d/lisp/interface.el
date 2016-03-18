@@ -68,6 +68,30 @@
 (add-hook 'window-setup-hook 'create-prog-mode-hook-linum-mode-enabler)
 (add-to-list 'after-make-frame-functions #'create-prog-mode-hook-linum-mode-enabler)
 
+(if (require 'whitespace nil 'no-error)
+    (progn
+      (setq whitespace-style '(face trailing lines-tail newline space-mark tab-mark newline-mark))
+      (setq whitespace-display-mappings
+            '((space-mark 32
+                          [183]
+                          [46])
+              (space-mark 160
+                          [164]
+                          [95])
+              (newline-mark 10
+                            [172 10])
+              (tab-mark 9
+                        [8212 9]
+                        [92 9])))
+
+      (set-face-foreground 'whitespace-tab "#586e75")))
+
+(if (require 'dired nil 'no-error)
+    (progn
+      (add-hook 'dired-mode-hook
+                (lambda ()
+                  (if (require 'whitespace nil 'no-error)
+                      (setq-local whitespace-style (remove 'space-mark whitespace-style)))))))
 
 ;; Get rid of the fringes.
 (fringe-mode '(0 . 0))
