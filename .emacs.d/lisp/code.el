@@ -31,6 +31,7 @@
             (setq ruby-indent-tabs-mode t)
             (setq ruby-use-smie nil)
 
+            (add-hook 'ruby-mode-hook 'robe-mode)
             (add-hook 'ruby-mode-hook
                       (lambda ()
                         (setq-local indent-line-function 'ruby-indent-line)))))
@@ -38,7 +39,10 @@
       (if (require 'elisp-mode nil 'no-error)
           (progn
             (add-hook 'emacs-lisp-mode-hook
-                      (lambda () (setq indent-tabs-mode nil)))
+                      (lambda ()
+                        (setq indent-tabs-mode nil)
+                        (if (require 'whitespace nil 'no-error)
+                            (setq-local whitespace-style (remove 'space-mark whitespace-style)))))
 
             (font-lock-add-keywords 'emacs-lisp-mode
                                     '(("setq" . font-lock-builtin-face)
@@ -50,7 +54,11 @@
       (if (require 'lisp-mode nil 'no-error)
           (progn
             (add-hook 'lisp-mode-hook
-                      (lambda () (setq indent-tabs-mode nil)))
+                      (lambda ()
+                        (setq indent-tabs-mode nil)
+                        (if (require 'whitespace nil 'no-error)
+                            (setq-local whitespace-style (remove 'space-mark whitespace-style)))))
+
             (font-lock-add-keywords 'emacs-lisp-mode
                                     '(("setq" . font-lock-builtin-face)
                                       ("setq-default" . font-lock-builtin-face)
@@ -103,6 +111,10 @@
 (if (require 'doc-view nil 'no-error)
     (progn
       (add-hook 'doc-view-mode-hook 'auto-revert-mode)))
+
+(if (require 'robe nil 'no-error)
+    (progn
+      (add-hook 'robe-mode-hook 'ac-robe-setup)))
 
 ;; Delete annoying trailing whitespace.
 (add-hook 'before-save-hook
