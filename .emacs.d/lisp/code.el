@@ -32,6 +32,7 @@
             (setq ruby-use-smie nil)
 
             (add-hook 'ruby-mode-hook 'robe-mode)
+            (add-hook 'ruby-mode-hook 'auto-complete-mode)
             (add-hook 'ruby-mode-hook
                       (lambda ()
                         (setq-local indent-line-function 'ruby-indent-line)))))
@@ -120,6 +121,9 @@
 (add-hook 'before-save-hook
           '(lambda ()
              (delete-trailing-whitespace)))
+
+;; Require final newline
+(setq-default require-final-newline t)
 
 ;; Set the default maximum Git commit summary length.
 (setq git-commit-summary-max-length 50)
