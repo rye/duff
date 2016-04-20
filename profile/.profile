@@ -56,9 +56,11 @@ fi
 
 if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ];
 then
+	echo "[gpg] will connect to existing GPG daemon"
 	source ~/.gnupg/.gpg-agent-info
 	export GPG_AGENT_INFO
 else
+	echo "[gpg] starting new GPG daemon"
 	eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
 fi
 
