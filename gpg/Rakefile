@@ -7,8 +7,48 @@ namespace :gpg do
 
 	desc 'Install the GnuPG Configuration'
 	task :install do
-		installation_target = File.join(Dir.home, '.gnupg')
-		file = File.join(File.dirname(__FILE__), '.gnupg')
+		installation_target = File.join(Dir.home, '.gnupg', 'gpg.conf')
+		file = File.join(File.dirname(__FILE__), '.gnupg', 'gpg.conf')
+
+		unless File.directory? File.dirname(installation_target)
+			Duff::LOGGER.info "Unable to find #{File.dirname(installation_target)}.  Creating."
+
+			FileUtils.mkdir(File.dirname(installation_target))
+
+			Duff::LOGGER.info "Created #{File.dirname(installation_target)}."
+		else
+			Duff::LOGGER.info "Already have #{File.dirname(installation_target)}."
+		end
+
+		Duff::LOGGER.info "Installing #{file} to #{installation_target}."
+
+		if File.exist?(installation_target)
+			Duff::LOGGER.info "#{installation_target} already exists.  Removing."
+
+			FileUtils.remove_entry(installation_target)
+		end
+
+		Duff::LOGGER.info "Symlinking #{file} to #{installation_target}."
+
+		File.symlink(file, installation_target)
+
+		Duff::LOGGER.info "Successful!"
+	end
+
+	desc 'Install the GnuPG-Agent Configuration'
+	task :install do
+		installation_target = File.join(Dir.home, '.gnupg', 'gpg-agent.conf')
+		file = File.join(File.dirname(__FILE__), '.gnupg', 'gpg-agent.conf')
+
+		unless File.directory? File.dirname(installation_target)
+			Duff::LOGGER.info "Unable to find #{File.dirname(installation_target)}.  Creating."
+
+			FileUtils.mkdir(File.dirname(installation_target))
+
+			Duff::LOGGER.info "Created #{File.dirname(installation_target)}."
+		else
+			Duff::LOGGER.info "Already have #{File.dirname(installation_target)}."
+		end
 
 		Duff::LOGGER.info "Installing #{file} to #{installation_target}."
 
