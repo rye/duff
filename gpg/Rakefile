@@ -5,7 +5,7 @@ require 'duff/logger'
 
 namespace :gpg do
 
-	desc 'Install the .gnupg file'
+	desc 'Install the GnuPG Configuration'
 	task :install do
 		installation_target = File.join(Dir.home, '.gnupg')
 		file = File.join(File.dirname(__FILE__), '.gnupg')
