@@ -50,4 +50,18 @@ then
 	source $HOME/.local/.profile
 fi
 
+# In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
+# variable pointing GPG to the gpg-agent socket. This little script will either start
+# gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
+
+if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ];
+then
+	echo "[gpg] will connect to existing GPG daemon"
+	source ~/.gnupg/.gpg-agent-info
+	export GPG_AGENT_INFO
+else
+	echo "[gpg] starting new GPG daemon"
+	eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+fi
+
 export PATH

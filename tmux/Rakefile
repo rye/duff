@@ -1,17 +1,28 @@
 require 'fileutils'
 require 'securerandom'
 
+require 'duff/logger'
+
 namespace :tmux do
 
 	desc 'Install the .tmux.conf file'
 	task :install do
 		installation_target = File.join(Dir.home, '.tmux.conf')
+		file = File.join(File.dirname(__FILE__), '.tmux.conf')
+
+		Duff::LOGGER.info "Installing #{file} to #{installation_target}."
 
 		if File.exist?(installation_target)
+			Duff::LOGGER.info "#{installation_target} already exists.  Removing."
+
 			FileUtils.remove_entry(installation_target)
 		end
 
-		File.symlink(File.join(File.dirname(__FILE__), '.tmux.conf'), installation_target)
+		Duff::LOGGER.info "Symlinking #{file} to #{installation_target}."
+
+		File.symlink(file, installation_target)
+
+		Duff::LOGGER.info "Successful!"
 	end
 
 end
