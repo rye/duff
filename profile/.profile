@@ -64,4 +64,9 @@ else
 	eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
 fi
 
+if [ -d "/usr/local/heroku/bin" ];
+then
+	PATH="/usr/local/heroku/bin:$PATH"
+fi
+
 export PATH
