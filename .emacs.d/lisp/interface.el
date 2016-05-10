@@ -103,6 +103,14 @@
 
   (set-face-attribute 'default nil :height (floor (* 10 size))))
 
+;; Add configuration for fic-mode to allow the use of
+;; fic-mode whenever in prog-mode
+(if (require 'fic-mode nil 'no-error)
+    (add-hook 'prog-mode-hook
+              (lambda ()
+                (fic-mode))))
+
+
 ;; When finding files, don't ask the user whether to follow a symbolic
 ;; link or not; just do it, and do it always.
 (setq find-file-visit-truename t)

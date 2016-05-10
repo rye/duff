@@ -7,7 +7,7 @@
 
 (setq packages--dependency-list '(solarized-theme))
 
-(setq packages--recommendation-list '(nyan-mode rspec-mode yaml-mode multi-term smartparens ample-theme jazz-theme markdown-mode haskell-mode coffee-mode frame-fns solarized-theme web-mode gitignore-mode magit smex smart-tabs-mode tao-theme robe))
+(setq packages--recommendation-list '(nyan-mode rspec-mode yaml-mode multi-term smartparens ample-theme jazz-theme markdown-mode haskell-mode coffee-mode frame-fns solarized-theme web-mode gitignore-mode magit smex smart-tabs-mode tao-theme robe fic-mode))
 
 ;; Installs the dependencies.
 (defun packages-install-dependencies (&optional all)
