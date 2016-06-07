@@ -37,12 +37,15 @@ fi
 
 # Do some magic to determine if we're a Mac OSX machine or nah.
 # Note: requires Homebrew's "coreutils" package to be installed.
-if [ "`guname -o`" = "Darwin" ];
+if which guname 2>&1 >/dev/null;
 then
-	PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-	PATH="$(brew --prefix ruby)/bin:$PATH"
-	PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-	PATH="/usr/local/sbin:$PATH"
+	if [ "`guname -o`" = "Darwin" ];
+	then
+		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+		PATH="$(brew --prefix ruby)/bin:$PATH"
+		PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+		PATH="/usr/local/sbin:$PATH"
+	fi
 fi
 
 if [ -f "$HOME/.local/.profile" ];
