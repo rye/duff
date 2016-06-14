@@ -8,6 +8,7 @@
 (setq packages--dependency-list
       '(
         solarized-theme
+        tao-theme
         ))
 
 (setq packages--recommendation-list
@@ -32,6 +33,7 @@
         tao-theme
         robe
         fic-mode
+        rainbow-delimiters
         ))
 
 ;; Installs the dependencies.

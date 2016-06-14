@@ -120,3 +120,8 @@
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 (require 'whitespace)
+
+(global-prettify-symbols-mode +1)
+
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)

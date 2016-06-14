@@ -28,6 +28,7 @@
           (progn
             (setq-default ruby-indent-level global-tab-width)
             (smart-tabs-advice ruby-indent-line ruby-indent-level)
+
             (setq ruby-indent-tabs-mode t)
             (setq ruby-use-smie nil)
 
@@ -35,13 +36,27 @@
             (add-hook 'ruby-mode-hook 'auto-complete-mode)
             (add-hook 'ruby-mode-hook
                       (lambda ()
-                        (setq-local indent-line-function 'ruby-indent-line)))))
+                        (setq-local indent-line-function 'ruby-indent-line)))
+
+            (add-hook 'ruby-mode-hook
+                      (lambda ()
+                        (setq prettify-symbols-alist '())
+                        (push '(">=" . ?≥) prettify-symbols-alist)
+                        (push '("<=" . ?≤) prettify-symbols-alist)
+                        (push '("<<" . ?«) prettify-symbols-alist)
+                        (push '("=>" . ?⇒) prettify-symbols-alist)))))
 
       (if (require 'elisp-mode nil 'no-error)
           (progn
             (add-hook 'emacs-lisp-mode-hook
                       (lambda ()
                         (setq indent-tabs-mode nil)
+
+                        (add-hook 'emacs-lisp-mode-hook
+                                  (lambda ()
+                                    (push '(">=" . ?≥) prettify-symbols-alist)
+                                    (push '("<=" . ?≤) prettify-symbols-alist)))
+
                         (if (require 'whitespace nil 'no-error)
                             (setq-local whitespace-style (remove 'space-mark whitespace-style)))))
 
