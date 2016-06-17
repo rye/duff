@@ -23,59 +23,59 @@ function start_color {
 		# Only return bolded colors.
 
 		case $color_name in
-			"red")
-				echo "%{$fg_bold[red]%}"
-				;;
-			"blue")
-				echo "%{$fg_bold[blue]%}"
-				;;
-			"green")
-				echo "%{$fg_bold[green]%}"
-				;;
-			"cyan")
-				echo "%{$fg_bold[cyan]%}"
-				;;
-			"yellow")
-				echo "%{$fg_bold[yellow]%}"
-				;;
-			"magenta")
-				echo "%{$fg_bold[magenta]%}"
-				;;
-			"white")
-				echo "%{$fg_bold[white]%}"
-				;;
-			*)
-				echo "%{$fg_bold[white]%}"
-				;;
+		"red")
+			echo "%{$fg_bold[red]%}"
+			;;
+		"blue")
+			echo "%{$fg_bold[blue]%}"
+			;;
+		"green")
+			echo "%{$fg_bold[green]%}"
+			;;
+		"cyan")
+			echo "%{$fg_bold[cyan]%}"
+			;;
+		"yellow")
+			echo "%{$fg_bold[yellow]%}"
+			;;
+		"magenta")
+			echo "%{$fg_bold[magenta]%}"
+			;;
+		"white")
+			echo "%{$fg_bold[white]%}"
+			;;
+		*)
+			echo "%{$fg_bold[white]%}"
+			;;
 		esac
 	else
 		# Only return unbolded colors.
 
 		case $color_name in
-			"red")
-				echo "%{$fg_no_bold[red]%}"
-				;;
-			"blue")
-				echo "%{$fg_no_bold[blue]%}"
-				;;
-			"green")
-				echo "%{$fg_no_bold[green]%}"
-				;;
-			"cyan")
-				echo "%{$fg_no_bold[cyan]%}"
-				;;
-			"yellow")
-				echo "%{$fg_no_bold[yellow]%}"
-				;;
-			"magenta")
-				echo "%{$fg_no_bold[magenta]%}"
-				;;
-			"white")
-				echo "%{$fg_no_bold[white]%}"
-				;;
-			*)
-				echo "%{$fg_no_bold[white]%}"
-				;;
+		"red")
+			echo "%{$fg_no_bold[red]%}"
+			;;
+		"blue")
+			echo "%{$fg_no_bold[blue]%}"
+			;;
+		"green")
+			echo "%{$fg_no_bold[green]%}"
+			;;
+		"cyan")
+			echo "%{$fg_no_bold[cyan]%}"
+			;;
+		"yellow")
+			echo "%{$fg_no_bold[yellow]%}"
+			;;
+		"magenta")
+			echo "%{$fg_no_bold[magenta]%}"
+			;;
+		"white")
+			echo "%{$fg_no_bold[white]%}"
+			;;
+		*)
+			echo "%{$fg_no_bold[white]%}"
+			;;
 		esac
 	fi
 }
@@ -124,8 +124,8 @@ function precmd {
 		branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
 
 		if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit (working directory clean)" ||
-					"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
-					"$(git status 2> /dev/null | tail -n1)" == "nothing added to commit but untracked files present (use \"git add\" to track)" ]];
+						"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
+						"$(git status 2> /dev/null | tail -n1)" == "nothing added to commit but untracked files present (use \"git add\" to track)" ]];
 		then
 			dirty="1"
 		else
@@ -185,88 +185,88 @@ fi
 
 function d {
 	case $1 in
-		"g")
-			if [ -L $HOME/D/G ];
+	"g")
+		if [ -L $HOME/D/G ];
+		then
+			if [ -t 1 ];
 			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/D/G/$2/$3"
-					cd "$HOME/D/G/$2/$3"
-				else
-					echo "$HOME/D/G/$2/$3"
-				fi
-			elif [ -L $HOME/.D/G ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/.D/G/$2/$3"
-					cd "$HOME/.D/G/$2/$3"
-				else
-					echo "$HOME/.D/G/$2/$3"
-				fi
-			elif [ -L $HOME/D/.G ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/D/.G/$2/$3"
-					cd "$HOME/D/.G/$2/$3"
-				else
-					echo "$HOME/D/.G/$2/$3"
-				fi
-			elif [ -L $HOME/.D/.G ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/.D/.G/$2/$3"
-					cd "$HOME/.D/.G/$2/$3"
-				else
-					echo "$HOME/.D/.G/$2/$3"
-				fi
-			elif [ -L $HOME/d/g ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/d/g/$2/$3"
-					cd "$HOME/d/g/$2/$3"
-				else
-					echo "$HOME/d/g/$2/$3"
-				fi
-			elif [ -L $HOME/.d/g ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/.d/g/$2/$3"
-					cd "$HOME/.d/g/$2/$3"
-				else
-					echo "$HOME/.d/g/$2/$3"
-				fi
-			elif [ -L $HOME/d/.g ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/d/.g/$2/$3"
-					cd "$HOME/d/.g/$2/$3"
-				else
-					echo "$HOME/d/.g/$2/$3"
-				fi
-			elif [ -L $HOME/.d/.g ];
-			then
-				if [ -t 1 ];
-				then
-					echo "[d $1] Changing to $HOME/.d/.g/$2/$3"
-					cd "$HOME/.d/.g/$2/$3"
-				else
-					echo "$HOME/.d/.g/$2/$3"
-				fi
+				echo "[d $1] Changing to $HOME/D/G/$2/$3"
+				cd "$HOME/D/G/$2/$3"
 			else
-				echo "[d $1] Could not determine what you want me to do, so I'm not doing anything"
-				return 1
+				echo "$HOME/D/G/$2/$3"
 			fi
-			;;
-		*)
-			echo "[d $1] Unrecognized argument: \"$1\""
+		elif [ -L $HOME/.D/G ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/.D/G/$2/$3"
+				cd "$HOME/.D/G/$2/$3"
+			else
+				echo "$HOME/.D/G/$2/$3"
+			fi
+		elif [ -L $HOME/D/.G ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/D/.G/$2/$3"
+				cd "$HOME/D/.G/$2/$3"
+			else
+				echo "$HOME/D/.G/$2/$3"
+			fi
+		elif [ -L $HOME/.D/.G ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/.D/.G/$2/$3"
+				cd "$HOME/.D/.G/$2/$3"
+			else
+				echo "$HOME/.D/.G/$2/$3"
+			fi
+		elif [ -L $HOME/d/g ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/d/g/$2/$3"
+				cd "$HOME/d/g/$2/$3"
+			else
+				echo "$HOME/d/g/$2/$3"
+			fi
+		elif [ -L $HOME/.d/g ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/.d/g/$2/$3"
+				cd "$HOME/.d/g/$2/$3"
+			else
+				echo "$HOME/.d/g/$2/$3"
+			fi
+		elif [ -L $HOME/d/.g ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/d/.g/$2/$3"
+				cd "$HOME/d/.g/$2/$3"
+			else
+				echo "$HOME/d/.g/$2/$3"
+			fi
+		elif [ -L $HOME/.d/.g ];
+		then
+			if [ -t 1 ];
+			then
+				echo "[d $1] Changing to $HOME/.d/.g/$2/$3"
+				cd "$HOME/.d/.g/$2/$3"
+			else
+				echo "$HOME/.d/.g/$2/$3"
+			fi
+		else
+			echo "[d $1] Could not determine what you want me to do, so I'm not doing anything"
 			return 1
-			;;
+		fi
+		;;
+	*)
+		echo "[d $1] Unrecognized argument: \"$1\""
+		return 1
+		;;
 	esac
 }
 
@@ -279,7 +279,7 @@ function lf {
 	then
 		ls $1
 	else;
-		echo "$1 passes neither \"test -f\" nor \"test -d\", so not a file or directory."
+			echo "$1 passes neither \"test -f\" nor \"test -d\", so not a file or directory."
 	fi
 }
 
