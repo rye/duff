@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "json"
+
+ZASH_CONFIGURATION_FILE = File.join(Dir.home, ".config", "zash", "machine.json")
+
+configuration_file_contents = open(ZASH_CONFIGURATION_FILE, "rb") do |io|
+	io.read
+end
+
+hash = JSON.parse(configuration_file_contents) || nil
+
+if ARGV[0].downcase == "get"
+	keys = (ARGV[1] || "").split("::")
+
+	property = hash
+
+	keys.each do |key|
+		property = property[key]
+	end
+
+	puts property.to_s
+end

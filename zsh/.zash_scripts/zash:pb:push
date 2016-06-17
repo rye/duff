@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+case $1 in
+	"note")
+		curl -nX POST https://api.pushbullet.com/v2/pushes -H "Content-Type: application/json" -d "{\"type\": \"note\", \"title\": \"$2\", \"body\": \"$3\"}"
+		;;
+	"link")
+		curl -nX POST https://api.pushbullet.com/v2/pushes -H "Content-Type: application/json" -d "{\"type\": \"link\", \"title\": \"$2\", \"body\": \"$3\", \"url\": \"$4\"}"
+		;;
+	*)
+		echo "[zash:pb:push] Unknown push type! Sorry."
+		;;
+esac

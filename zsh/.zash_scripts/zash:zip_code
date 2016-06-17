@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require "net/https"
+require "json"
+
+GEOIP_SELF_LOOKUP_URI = URI('https://freegeoip.net/json/')
+
+# Send a HTTP(S) GET to the GEOIP lookup service.
+response = Net::HTTP.start(GEOIP_SELF_LOOKUP_URI.host,
+                           GEOIP_SELF_LOOKUP_URI.port,
+                           use_ssl: true) do |http|
+	request = Net::HTTP::Get.new GEOIP_SELF_LOOKUP_URI
+
+	http.request request
+end
+
+body = response.body
+
+hash = JSON.parse(body)
+
+# Print out the FreeGEOIP response for our zip_code, so
+# we can use this for shell scripting.
+puts hash["zip_code"]
