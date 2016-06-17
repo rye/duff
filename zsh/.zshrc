@@ -4,8 +4,8 @@ colors
 
 alias ls="ls --color=auto -A"
 
-# Find the zash directory.
-zash_directory=$(dirname $(readlink -f ~/.zshrc))
+# Find the directory which holds this file
+zsh_directory=$(dirname $(readlink -f ~/.zshrc))
 
 function start_color {
 	color_name="$1"
@@ -95,11 +95,6 @@ alias ls="ls --color=auto -A"
 gPATH=$HOME/.local/bin:$PATH
 
 machine_color="`start_color yellow unbold`"
-
-if [ -x ~/.zash_hooks/select_machine_color ];
-then
-	. ~/.zash_hooks/select_machine_color
-fi
 
 prompt_dir="`start_color blue unbold`%~`end_color`"
 
