@@ -8,86 +8,86 @@ alias ls="ls --color=auto -A"
 zash_directory=$(dirname $(readlink -f ~/.zshrc))
 
 function start_color {
-    color_name="$1"
-    bold="$2"
+	color_name="$1"
+	bold="$2"
 
-    if [ "$TERM" = "dumb" ];
-    then
-        echo ""
+	if [ "$TERM" = "dumb" ];
+	then
+		echo ""
 
-        return 0
-    fi
+		return 0
+	fi
 
-    if [ "$bold" = "bold" ];
-    then
-        # Only return bolded colors.
+	if [ "$bold" = "bold" ];
+	then
+		# Only return bolded colors.
 
-        case $color_name in
-            "red")
-                echo "%{$fg_bold[red]%}"
-                ;;
-            "blue")
-                echo "%{$fg_bold[blue]%}"
-                ;;
-            "green")
-                echo "%{$fg_bold[green]%}"
-                ;;
-            "cyan")
-                echo "%{$fg_bold[cyan]%}"
-                ;;
-            "yellow")
-                echo "%{$fg_bold[yellow]%}"
-                ;;
-            "magenta")
-                echo "%{$fg_bold[magenta]%}"
-                ;;
-            "white")
-                echo "%{$fg_bold[white]%}"
-                ;;
-            *)
-                echo "%{$fg_bold[white]%}"
-                ;;
-        esac
-    else
-        # Only return unbolded colors.
+		case $color_name in
+			"red")
+				echo "%{$fg_bold[red]%}"
+				;;
+			"blue")
+				echo "%{$fg_bold[blue]%}"
+				;;
+			"green")
+				echo "%{$fg_bold[green]%}"
+				;;
+			"cyan")
+				echo "%{$fg_bold[cyan]%}"
+				;;
+			"yellow")
+				echo "%{$fg_bold[yellow]%}"
+				;;
+			"magenta")
+				echo "%{$fg_bold[magenta]%}"
+				;;
+			"white")
+				echo "%{$fg_bold[white]%}"
+				;;
+			*)
+				echo "%{$fg_bold[white]%}"
+				;;
+		esac
+	else
+		# Only return unbolded colors.
 
-        case $color_name in
-            "red")
-                echo "%{$fg_no_bold[red]%}"
-                ;;
-            "blue")
-                echo "%{$fg_no_bold[blue]%}"
-                ;;
-            "green")
-                echo "%{$fg_no_bold[green]%}"
-                ;;
-            "cyan")
-                echo "%{$fg_no_bold[cyan]%}"
-                ;;
-            "yellow")
-                echo "%{$fg_no_bold[yellow]%}"
-                ;;
-            "magenta")
-                echo "%{$fg_no_bold[magenta]%}"
-                ;;
-            "white")
-                echo "%{$fg_no_bold[white]%}"
-                ;;
-            *)
-                echo "%{$fg_no_bold[white]%}"
-                ;;
-        esac
-    fi
+		case $color_name in
+			"red")
+				echo "%{$fg_no_bold[red]%}"
+				;;
+			"blue")
+				echo "%{$fg_no_bold[blue]%}"
+				;;
+			"green")
+				echo "%{$fg_no_bold[green]%}"
+				;;
+			"cyan")
+				echo "%{$fg_no_bold[cyan]%}"
+				;;
+			"yellow")
+				echo "%{$fg_no_bold[yellow]%}"
+				;;
+			"magenta")
+				echo "%{$fg_no_bold[magenta]%}"
+				;;
+			"white")
+				echo "%{$fg_no_bold[white]%}"
+				;;
+			*)
+				echo "%{$fg_no_bold[white]%}"
+				;;
+		esac
+	fi
 }
 
 function end_color {
-    if [ "$TERM" = "dumb" ];
-    then
-        echo ""
-        return 0
-    fi
+	if [ "$TERM" = "dumb" ];
+	then
+		echo ""
+		return 0
+	fi
 
-    echo "%{$reset_color%}"
+	echo "%{$reset_color%}"
 }
 
 alias ls="ls --color=auto -A"
@@ -124,8 +124,8 @@ function precmd {
 		branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
 
 		if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit (working directory clean)" ||
-		            "$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
-			        "$(git status 2> /dev/null | tail -n1)" == "nothing added to commit but untracked files present (use \"git add\" to track)" ]];
+					"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
+					"$(git status 2> /dev/null | tail -n1)" == "nothing added to commit but untracked files present (use \"git add\" to track)" ]];
 		then
 			dirty="1"
 		else
@@ -142,8 +142,8 @@ function precmd {
 		fi
 
 		if [ $branch ];
-        then
-		    branch=" ${prefix}$branch${suffix}`end_color`";
+		then
+			branch=" ${prefix}$branch${suffix}`end_color`";
 		fi
 	else
 		branch="";

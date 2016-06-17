@@ -3,5 +3,5 @@
 
 if [ -x ~/.zash_hooks/login ];
 then
-	~/.zash_hooks/login
+  ~/.zash_hooks/login
 fi
