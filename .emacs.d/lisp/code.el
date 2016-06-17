@@ -19,6 +19,21 @@
 
             (smart-tabs-insinuate 'coffee)))
 
+      (if (require 'sh-script nil 'no-error)
+          (progn
+            (setq-default sh-basic-offset 2)
+            (setq-default sh-indentation 2)
+            (setq-default sh-indent-for-case-label 0)
+            (setq-default sh-indent-for-case-alt '+)
+
+            (smart-tabs-add-language-support sh-script sh-mode-hook
+              ((sh-indent-line . sh-basic-offset)))
+
+            (smart-tabs-insinuate 'sh-script)
+
+            (add-hook 'sh-mode-hook
+                      (lambda () (setq indent-tabs-mode t)))))
+
       (if (require 'java-mode nil 'no-error)
           (progn
             (add-hook 'java-mode-hook
