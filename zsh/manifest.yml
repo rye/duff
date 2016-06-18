@@ -1,0 +1,8 @@
+files:
+  - './.zshrc'
+  - './.zlogin'
+  - './.zlogout'
+  - './.zprofile'
+  - './.zshenv'
+
+directories:
