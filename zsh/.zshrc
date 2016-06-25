@@ -107,7 +107,7 @@ function pwd_with_tilde {
 }
 
 function precmd {
-	if [[ $? = "0" ]]
+	if [[ $? = "0" ]];
 	then
 		prompt_main_color="`start_color green unbold`"
 	else
@@ -115,7 +115,8 @@ function precmd {
 	fi
 
 	# Git branch stuff from escherfan on Reddit
-	if [ -n ${branch} ]; then
+	if [ -n ${branch} ];
+	then
 		branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
 
 		if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit (working directory clean)" ||
@@ -127,7 +128,7 @@ function precmd {
 			dirty="0"
 		fi
 
-		if [ "$dirty" = "0" ];
+		if [[ "$dirty" = "0" ]];
 		then
 			prefix="`start_color red unbold`("
 			suffix=")"
@@ -172,98 +173,6 @@ function sudoit {
 }
 
 setopt correct
-
-if [ -d $HOME/.zash_scripts ];
-then
-	PATH=$HOME/.zash_scripts:$PATH
-fi
-
-function d {
-	case $1 in
-	"g")
-		if [ -L $HOME/D/G ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/D/G/$2/$3"
-				cd "$HOME/D/G/$2/$3"
-			else
-				echo "$HOME/D/G/$2/$3"
-			fi
-		elif [ -L $HOME/.D/G ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/.D/G/$2/$3"
-				cd "$HOME/.D/G/$2/$3"
-			else
-				echo "$HOME/.D/G/$2/$3"
-			fi
-		elif [ -L $HOME/D/.G ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/D/.G/$2/$3"
-				cd "$HOME/D/.G/$2/$3"
-			else
-				echo "$HOME/D/.G/$2/$3"
-			fi
-		elif [ -L $HOME/.D/.G ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/.D/.G/$2/$3"
-				cd "$HOME/.D/.G/$2/$3"
-			else
-				echo "$HOME/.D/.G/$2/$3"
-			fi
-		elif [ -L $HOME/d/g ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/d/g/$2/$3"
-				cd "$HOME/d/g/$2/$3"
-			else
-				echo "$HOME/d/g/$2/$3"
-			fi
-		elif [ -L $HOME/.d/g ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/.d/g/$2/$3"
-				cd "$HOME/.d/g/$2/$3"
-			else
-				echo "$HOME/.d/g/$2/$3"
-			fi
-		elif [ -L $HOME/d/.g ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/d/.g/$2/$3"
-				cd "$HOME/d/.g/$2/$3"
-			else
-				echo "$HOME/d/.g/$2/$3"
-			fi
-		elif [ -L $HOME/.d/.g ];
-		then
-			if [ -t 1 ];
-			then
-				echo "[d $1] Changing to $HOME/.d/.g/$2/$3"
-				cd "$HOME/.d/.g/$2/$3"
-			else
-				echo "$HOME/.d/.g/$2/$3"
-			fi
-		else
-			echo "[d $1] Could not determine what you want me to do, so I'm not doing anything"
-			return 1
-		fi
-		;;
-	*)
-		echo "[d $1] Unrecognized argument: \"$1\""
-		return 1
-		;;
-	esac
-}
 
 # A function to quickly dump the contents of a file.
 function lf {
