@@ -5,24 +5,24 @@ require 'duff/logger'
 
 namespace :profile do
 
-	desc 'Install the .profile file'
-	task :install do
-		installation_target = File.join(Dir.home, '.profile')
-		file = File.join(File.dirname(__FILE__), '.profile')
+  desc 'Install the .profile file'
+  task :install do
+    installation_target = File.join(Dir.home, '.profile')
+    file = File.join(File.dirname(__FILE__), '.profile')
 
-		Duff::LOGGER.info "Installing #{file} to #{installation_target}."
+    Duff::LOGGER.info "Installing #{file} to #{installation_target}."
 
-		if File.exist?(installation_target)
-			Duff::LOGGER.info "#{installation_target} already exists.  Removing."
+    if File.exist?(installation_target)
+      Duff::LOGGER.info "#{installation_target} already exists.  Removing."
 
-			FileUtils.remove_entry(installation_target)
-		end
+      FileUtils.remove_entry(installation_target)
+    end
 
-		Duff::LOGGER.info "Symlinking #{file} to #{installation_target}."
+    Duff::LOGGER.info "Symlinking #{file} to #{installation_target}."
 
-		File.symlink(file, installation_target)
+    File.symlink(file, installation_target)
 
-		Duff::LOGGER.info "Successful!"
-	end
+    Duff::LOGGER.info "Successful!"
+  end
 
 end

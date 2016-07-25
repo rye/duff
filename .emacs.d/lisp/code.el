@@ -8,7 +8,7 @@
 
 (if (require 'smart-tabs-mode nil 'no-error)
     (progn
-      (smart-tabs-insinuate 'c 'c++ 'java 'javascript 'cperl 'python 'ruby 'nxml)
+      (smart-tabs-insinuate 'c 'c++ 'java 'javascript 'cperl 'python 'nxml)
 
       (if (require 'coffee-mode nil 'no-error)
           (progn
@@ -41,10 +41,10 @@
 
       (if (require 'ruby-mode nil 'no-error)
           (progn
-            (setq-default ruby-indent-level global-tab-width)
-            (smart-tabs-advice ruby-indent-line ruby-indent-level)
+            (setq-default ruby-indent-level 2)
+            ;; (smart-tabs-advice ruby-indent-line ruby-indent-level)
 
-            (setq ruby-indent-tabs-mode t)
+            (setq ruby-indent-tabs-mode nil)
             (setq ruby-use-smie nil)
 
             (add-hook 'ruby-mode-hook 'robe-mode)

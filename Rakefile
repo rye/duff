@@ -8,9 +8,9 @@ RAKEFILES = Dir.glob(File.expand_path(File.join('*', 'Rakefile'), File.dirname(_
 
 RAKEFILES.each do |rakefile|
 
-	if !FileUtils.identical?(rakefile, __FILE__)
-		Duff::LOGGER.debug "Loading #{rakefile}"
-		load rakefile
-	end
+  if !FileUtils.identical?(rakefile, __FILE__)
+    Duff::LOGGER.debug "Loading #{rakefile}"
+    load rakefile
+  end
 
 end
