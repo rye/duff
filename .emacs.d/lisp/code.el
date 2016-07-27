@@ -128,18 +128,8 @@
     (progn
       (editorconfig-mode 1)
 
-      (add-hook 'editorconfig-custom-hooks
-                (lambda (hash)
-                  (cond ((eq major-mode 'ruby-mode)
-                         (message "Setting `ruby-indent-tabs-mode' to `indent-tabs-mode'")
-                         (setq ruby-indent-tabs-mode indent-tabs-mode)))))
-
-      (add-hook 'editorconfig-custom-hooks
-                (lambda (hash)
-                  (if (and (not indent-tabs-mode) smart-tabs-mode)
-                      (progn
-                        (message "`indent-tabs-mode' is disabled but `smart-tabs-mode' is enabled. Disabling.")
-                        (setq smart-tabs-mode nil)))))
+      (add-hook 'editorconfig-custom-hooks 'hooks/editorconfig--set-language-specific-indent-tabs-mode)
+      (add-hook 'editorconfig-custom-hooks 'hooks/editorconfig--unify-indent-tabs-mode-and-smart-tabs-mode)
 
       (add-to-list 'editorconfig-indentation-alist
                    '(ruby-mode ruby-indent-level))))
