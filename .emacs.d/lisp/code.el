@@ -114,9 +114,7 @@
 
 (if (require 'hl-line nil 'no-error)
     (progn
-      (add-hook 'prog-mode-hook
-                (lambda ()
-                  (hl-line-mode t)))))
+      (add-hook 'prog-mode-hook 'hooks/hl-line--enable)))
 
 (if (require 'doc-view nil 'no-error)
     (progn
