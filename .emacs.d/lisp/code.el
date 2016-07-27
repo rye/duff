@@ -124,6 +124,26 @@
     (progn
       (add-hook 'robe-mode-hook 'ac-robe-setup)))
 
+(if (require 'editorconfig nil 'no-error)
+    (progn
+      (editorconfig-mode 1)
+
+      (add-hook 'editorconfig-custom-hooks
+                (lambda (hash)
+                  (cond ((eq major-mode 'ruby-mode)
+                         (message "Setting `ruby-indent-tabs-mode' to `indent-tabs-mode'")
+                         (setq ruby-indent-tabs-mode indent-tabs-mode)))))
+
+      (add-hook 'editorconfig-custom-hooks
+                (lambda (hash)
+                  (if (and (not indent-tabs-mode) smart-tabs-mode)
+                      (progn
+                        (message "`indent-tabs-mode' is disabled but `smart-tabs-mode' is enabled. Disabling.")
+                        (setq smart-tabs-mode nil)))))
+
+      (add-to-list 'editorconfig-indentation-alist
+                   '(ruby-mode ruby-indent-level))))
+
 ;; Delete annoying trailing whitespace.
 (add-hook 'before-save-hook 'hooks/global--delete-trailing-whitespace)
 

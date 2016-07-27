@@ -28,6 +28,7 @@
         web-mode
         gitignore-mode
         magit
+        editorconfig
         smex
         smart-tabs-mode
         tao-theme
