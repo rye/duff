@@ -44,36 +44,47 @@
             (setq-default ruby-indent-level 2)
             (smart-tabs-advice ruby-indent-line ruby-indent-level)
 
+            (defun duff/ruby--set-indent-line-function ()
+              "Sets `indent-line-function' to `ruby-indent-line' locally."
+              (if (eq major-mode 'ruby-mode)
+                  (setq-local indent-line-function 'ruby-indent-line)))
+
+            (defun duff/ruby--add-prettify-symbols ()
+              "Adds Ruby-specific symbols to the `prettify-symbols-alist'."
+              (let (alist '())
+                (push '(">=" . ?≥) alist)
+                (push '("<=" . ?≤) alist)
+                (push '("<<" . ?«) alist)
+                (push '("=>" . ?⇒) alist)
+                (setq prettify-symbols-alist alist)))
+
             (setq ruby-indent-tabs-mode t)
             (setq ruby-use-smie nil)
 
             (add-hook 'ruby-mode-hook 'robe-mode)
             (add-hook 'ruby-mode-hook 'auto-complete-mode)
-            (add-hook 'ruby-mode-hook
-                      (lambda ()
-                        (setq-local indent-line-function 'ruby-indent-line)))
-
-            (add-hook 'ruby-mode-hook
-                      (lambda ()
-                        (setq prettify-symbols-alist '())
-                        (push '(">=" . ?≥) prettify-symbols-alist)
-                        (push '("<=" . ?≤) prettify-symbols-alist)
-                        (push '("<<" . ?«) prettify-symbols-alist)
-                        (push '("=>" . ?⇒) prettify-symbols-alist)))))
+            (add-hook 'ruby-mode-hook 'duff/ruby--set-indent-line-function)
+            (add-hook 'ruby-mode-hook 'duff/ruby--add-prettify-symbols)))
 
       (if (require 'elisp-mode nil 'no-error)
           (progn
-            (add-hook 'emacs-lisp-mode-hook
-                      (lambda ()
-                        (setq indent-tabs-mode nil)
+            (defun duff/elisp--disable-indent-tabs-mode ()
+              "Sets `indent-tabs-mode' to nil."
+              (setq indent-tabs-mode nil))
 
-                        (add-hook 'emacs-lisp-mode-hook
-                                  (lambda ()
-                                    (push '(">=" . ?≥) prettify-symbols-alist)
-                                    (push '("<=" . ?≤) prettify-symbols-alist)))
+            (defun duff/elisp--add-prettify-symbols ()
+              "Adds EmacsLisp-specific symbols to the `prettify-symbols-alist'."
+              (push '(">=" . ?≥) prettify-symbols-alist)
+              (push '("<=" . ?≤) prettify-symbols-alist))
 
-                        (if (require 'whitespace nil 'no-error)
-                            (setq-local whitespace-style (remove 'space-mark whitespace-style)))))
+            (defun duff/elisp--remove-space-from-whitespace-style ()
+              "Removes `space-mark' from `whitespace-style'."
+              (if (require 'whitespace nil 'no-error)
+                  (setq-local whitespace-style (remove 'space-mark whitespace-style))))
+
+            (add-hook 'emacs-lisp-mode-hook 'duff/elisp--disable-indent-tabs-mode)
+            (add-hook 'emacs-lisp-mode-hook 'duff/elisp--add-prettify-symbols)
+            (add-hook 'emacs-lisp-mode-hook 'duff/elisp--remove-space-from-whitespace-style)
 
             (font-lock-add-keywords 'emacs-lisp-mode
                                     '(("setq" . font-lock-builtin-face)
