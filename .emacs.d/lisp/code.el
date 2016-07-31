@@ -128,8 +128,8 @@
     (progn
       (editorconfig-mode 1)
 
-      (add-hook 'editorconfig-custom-hooks 'hooks/editorconfig--set-language-specific-indent-tabs-mode)
-      (add-hook 'editorconfig-custom-hooks 'hooks/editorconfig--unify-indent-tabs-mode-and-smart-tabs-mode)
+      (add-hook 'editorconfig-custom-hooks (lambda (hash) (hooks/editorconfig--set-language-specific-indent-tabs-mode hash)))
+      (add-hook 'editorconfig-custom-hooks (lambda (hash) (hooks/editorconfig--unify-indent-tabs-mode-and-smart-tabs-mode hash)))
 
       (add-to-list 'editorconfig-indentation-alist
                    '(ruby-mode ruby-indent-level))))
