@@ -194,3 +194,5 @@ fi
 
 # added by travis gem
 [ -f /Users/kristofer/.travis/travis.sh ] && source /Users/kristofer/.travis/travis.sh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
