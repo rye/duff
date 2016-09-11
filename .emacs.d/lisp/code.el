@@ -57,6 +57,8 @@
             (setq ruby-indent-tabs-mode t)
             (setq ruby-use-smie nil)
 
+            (add-to-list 'auto-mode-alist '("\\.god\\'" . ruby-mode))
+
             (add-hook 'ruby-mode-hook 'robe-mode)
             (add-hook 'ruby-mode-hook 'auto-complete-mode)
             (add-hook 'ruby-mode-hook 'hooks/ruby--set-indent-line-function)
