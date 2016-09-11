@@ -5,6 +5,9 @@
 (defvar interface-theme-switcher--current-pair '())
 (defvar interface-theme-switcher--alist '())
 
+(setq solarized-use-variable-pitch nil
+      solarized-scale-org-headlines nil)
+
 (defun interface-theme-switcher--preload (alist &optional no-confirm)
   (dolist (target alist)
     (progn
