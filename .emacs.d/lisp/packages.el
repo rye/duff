@@ -35,6 +35,7 @@
         robe
         fic-mode
         rainbow-delimiters
+        dockerfile-mode
         ))
 
 ;; Installs the dependencies.
