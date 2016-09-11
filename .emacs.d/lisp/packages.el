@@ -28,12 +28,14 @@
         web-mode
         gitignore-mode
         magit
+        editorconfig
         smex
         smart-tabs-mode
         tao-theme
         robe
         fic-mode
         rainbow-delimiters
+        dockerfile-mode
         ))
 
 ;; Installs the dependencies.
