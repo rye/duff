@@ -40,6 +40,15 @@
           (progn
             (add-hook 'java-mode-hook 'hooks/global--enable-indent-tabs-mode)))
 
+      (if (require 'nginx-mode nil 'no-error)
+          (progn
+            (setq-default nginx-indent-level 2)
+            (smart-tabs-advice nginx-indent-line nginx-indent-level)
+
+            (setq nginx-indent-tabs-mode t)
+
+            (add-hook 'nginx-mode-hook 'hooks/nginx--set-indent-line-function)))
+
       (if (require 'ruby-mode nil 'no-error)
           (progn
             (setq-default ruby-indent-level 2)
