@@ -121,8 +121,7 @@ function precmd {
 
 		if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit (working directory clean)" ||
 						"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
-						"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working tree clean" ||
-						"$(git status 2> /dev/null | tail -n1)" == "nothing added to commit but untracked files present (use \"git add\" to track)" ]];
+						"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working tree clean" ]];
 		then
 			dirty="1"
 		else
