@@ -35,9 +35,14 @@ then
 	PATH="$HOME/.local/ant/latest/bin:$PATH"
 fi
 
+if which ruby >/dev/null && which gem >/dev/null;
+then
+	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+fi
+
 # Do some magic to determine if we're a Mac OSX machine or nah.
 # Note: requires Homebrew's "coreutils" package to be installed.
-if which guname 2>&1 >/dev/null;
+if which guname >/dev/null 2>&1;
 then
 	if [ "`guname -o`" = "Darwin" ];
 	then
