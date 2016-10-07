@@ -66,9 +66,12 @@
 
       (if (require 'elisp-mode nil 'no-error)
           (progn
-            (add-hook 'emacs-lisp-mode-hook 'hooks/global--disable-indent-tabs-mode)
-            (add-hook 'emacs-lisp-mode-hook 'hooks/elisp--add-prettify-symbols)
-            (add-hook 'emacs-lisp-mode-hook 'hooks/lisp--remove-space-from-whitespace-style)
+            (add-hook 'emacs-lisp-mode-hook
+                      'hooks/global--disable-indent-tabs-mode)
+            (add-hook 'emacs-lisp-mode-hook
+                      'hooks/elisp--add-prettify-symbols)
+            (add-hook 'emacs-lisp-mode-hook
+                      'hooks/lisp--remove-space-from-whitespace-style)
 
             (font-lock-add-keywords 'emacs-lisp-mode
                                     '(("setq" . font-lock-builtin-face)
@@ -79,8 +82,10 @@
 
       (if (require 'lisp-mode nil 'no-error)
           (progn
-            (add-hook 'lisp-mode-hook 'hooks/global--disable-indent-tabs-mode)
-            (add-hook 'lisp-mode-hook 'hooks/lisp--remove-space-from-whitespace-style)
+            (add-hook 'lisp-mode-hook
+                      'hooks/global--disable-indent-tabs-mode)
+            (add-hook 'lisp-mode-hook
+                      'hooks/lisp--remove-space-from-whitespace-style)
 
             (font-lock-add-keywords 'lisp-mode
                                     '(("setq" . font-lock-builtin-face)
@@ -139,8 +144,12 @@
     (progn
       (editorconfig-mode 1)
 
-      (add-hook 'editorconfig-custom-hooks (lambda (hash) (hooks/editorconfig--set-language-specific-indent-tabs-mode hash)))
-      (add-hook 'editorconfig-custom-hooks (lambda (hash) (hooks/editorconfig--unify-indent-tabs-mode-and-smart-tabs-mode hash)))
+      (add-hook 'editorconfig-custom-hooks
+                (lambda (hash)
+                  (hooks/editorconfig--set-language-specific-indent-tabs-mode hash)))
+      (add-hook 'editorconfig-custom-hooks
+                (lambda (hash)
+                  (hooks/editorconfig--unify-indent-tabs-mode-and-smart-tabs-mode hash)))
 
       (add-to-list 'editorconfig-indentation-alist
                    '(ruby-mode ruby-indent-level))))
