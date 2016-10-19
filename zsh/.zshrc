@@ -92,7 +92,7 @@ function end_color {
 
 alias ls="ls --color=auto -A"
 
-gPATH=$HOME/.local/bin:$PATH
+PATH=$HOME/.local/bin:$PATH
 
 machine_color="`start_color yellow unbold`"
 
