@@ -1,3 +1,7 @@
+# In the event that the terminal is dumb, unset zle and
+# act like a smart-ish terminal.
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
 autoload -U compinit colors
 compinit
 colors
@@ -106,63 +110,57 @@ function pwd_with_tilde {
 	pwd | sed s/"`sed_escape_dirs $HOME`"/~/
 }
 
-function precmd {	
-	if [[ "$TERM" = "dumb" ]];
+function precmd {
+	if [[ $? = "0" ]];
 	then
-		PROMPT="> "
-		PS1="> "
+		prompt_main_color="`start_color green unbold`"
 	else
-		if [[ $? = "0" ]];
+		prompt_main_color="`start_color red unbold`"
+	fi
+
+	# Git branch stuff from escherfan on Reddit
+	if [ -n ${branch} ];
+	then
+		branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+
+		if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit (working directory clean)" ||
+						"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
+						"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working tree clean" ]];
 		then
-			prompt_main_color="`start_color green unbold`"
+			dirty="1"
 		else
-			prompt_main_color="`start_color red unbold`"
+			dirty="0"
 		fi
 
-		# Git branch stuff from escherfan on Reddit
-		if [ -n ${branch} ];
+		if [[ "$dirty" = "0" ]];
 		then
-			branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
-
-			if [[ "$(git status 2> /dev/null | tail -n1)" == "nothing to commit (working directory clean)" ||
-							"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working directory clean" ||
-							"$(git status 2> /dev/null | tail -n1)" == "nothing to commit, working tree clean" ]];
-			then
-				dirty="1"
-			else
-				dirty="0"
-			fi
-
-			if [[ "$dirty" = "0" ]];
-			then
-				prefix="`start_color red unbold`("
-				suffix=")"
-			else
-				prefix="`start_color green unbold`("
-				suffix=")"
-			fi
-
-			if [ $branch ];
-			then
-				branch=" ${prefix}$branch${suffix}`end_color`";
-			fi
+			prefix="`start_color red unbold`("
+			suffix=")"
 		else
-			branch="";
+			prefix="`start_color green unbold`("
+			suffix=")"
 		fi
 
-		prompt_ssh=""
-
-		if env | grep -q ^SSH_CLIENT=;
+		if [ $branch ];
 		then
-			prompt_ssh="`start_color green unbold``whoami``end_color`@`start_color yellow unbold``hostname``end_color`:"
+			branch=" ${prefix}$branch${suffix}`end_color`";
 		fi
+	else
+		branch="";
+	fi
 
-		if [ `pwd_with_tilde | wc -c` -lt "35" ];
-		then
-			PROMPT=" $prompt_ssh$prompt_dir$branch \$ "
-		else
-			PS1=" $prompt_ssh$prompt_dir$branch \$ "
-		fi
+	prompt_ssh=""
+
+	if env | grep -q ^SSH_CLIENT=;
+	then
+		prompt_ssh="`start_color green unbold``whoami``end_color`@`start_color yellow unbold``hostname``end_color`:"
+	fi
+
+	if [ `pwd_with_tilde | wc -c` -lt "35" ];
+	then
+		PROMPT=" $prompt_ssh$prompt_dir$branch \$ "
+	else
+		PS1=" $prompt_ssh$prompt_dir$branch \$ "
 	fi
 }
 
