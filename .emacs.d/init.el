@@ -31,6 +31,7 @@
 (l 'configuration-internals)
 (l 'packages)
 (l 'interface)
+(l 'network)
 (l 'keybinds)
 (l 'window-management)
 (l 'autosave)
