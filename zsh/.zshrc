@@ -6,8 +6,6 @@ autoload -U compinit colors
 compinit
 colors
 
-alias ls="ls --color=auto -A"
-
 # Find the directory which holds this file
 zsh_directory=$(dirname $(readlink -f ~/.zshrc))
 
@@ -94,7 +92,7 @@ function end_color {
 	echo "%{$reset_color%}"
 }
 
-alias ls="ls --color=auto -A"
+alias ls="ls --color=auto"
 
 PATH=$HOME/.local/bin:$PATH
 
