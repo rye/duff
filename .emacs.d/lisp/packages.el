@@ -9,32 +9,48 @@
       '(
         solarized-theme
         tao-theme
+        frame-fns
         ))
 
 (setq packages--recommendation-list
       '(
-        nyan-mode
+        ;; make Emacs great again
+        magit
+        smex
+        smartparens
+        editorconfig
+        robe
+
+        ;; themes
+        solarized-theme
+        tao-theme
+        ample-theme
+        jazz-theme
+
+        ;; editing modes for various files
         rspec-mode
         yaml-mode
         multi-term
-        smartparens
-        ample-theme
-        jazz-theme
         markdown-mode
         haskell-mode
         coffee-mode
-        frame-fns
-        solarized-theme
         web-mode
         gitignore-mode
-        magit
-        editorconfig
-        smex
         smart-tabs-mode
-        tao-theme
-        robe
-        fic-mode
+
+        ;; bullshit
+        nyan-mode
+
+        ;; highlighted delimiters to make editing a bit easier
         rainbow-delimiters
+
+        ;; for displaying TODO, FIXIT, etc. keywords
+        fic-mode
+
+        ;; for editing Docker-related files
+        docker
+        docker-api
+        docker-tramp
         dockerfile-mode
         ))
 
