@@ -1,13 +1,16 @@
 # In the event that the terminal is dumb, unset zle and
 # act like a smart-ish terminal.
+#
+# Useful for editing over TRAMP within Emacs.
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
 
+# Set up completion and colors
 autoload -U compinit colors
 compinit
 colors
 
-# Find the directory which holds this file
-zsh_directory=$(dirname $(readlink -f ~/.zshrc))
+# Enable corrections
+setopt correct
 
 function start_color {
 	color_name="$1"
@@ -94,8 +97,6 @@ function end_color {
 
 alias ls="ls --color=auto"
 
-PATH=$HOME/.local/bin:$PATH
-
 machine_color="`start_color yellow unbold`"
 
 prompt_dir="`start_color blue unbold`%~`end_color`"
@@ -162,19 +163,9 @@ function precmd {
 	fi
 }
 
-function red {
-	return 1
-}
-
-function green {
-	return 0
-}
-
 function sudoit {
 	sudo $history[$[HISTCMD-1]]
 }
-
-setopt correct
 
 # A function to quickly dump the contents of a file.
 function lf {
@@ -189,12 +180,12 @@ function lf {
 	fi
 }
 
+[ -e "${HOME}/.iterm2_shell_integration.zsh" ] && source "${HOME}/.iterm2_shell_integration.zsh"
+
 if [ -d $HOME/Software/apache-ant-1.9.4/bin ];
 then
 	PATH="$PATH:$HOME/Software/apache-ant-1.9.4/bin"
 fi
 
 # added by travis gem
-[ -f /Users/kristofer/.travis/travis.sh ] && source /Users/kristofer/.travis/travis.sh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh

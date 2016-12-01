@@ -1,22 +1,7 @@
-if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]];
-then
-	PATH="${PATH:+"$PATH:"}$HOME/.local/bin"
-fi
-
-if [ -d "$HOME/.local/include" ] && [[ ":$C_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]];
-then
-	C_INCLUDE_PATH="${C_INCLUDE_PATH:+"$C_INCLUDE_PATH:"}$HOME/.local/include"
-fi
-
-if [ -d "$HOME/.local/include" ] && [[ ":$CPLUS_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]];
-then
-	CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH:+"$CPLUS_INCLUDE_PATH:"}$HOME/.local/include"
-fi
-
-if [ -d "$HOME/.local/lib" ] && [[ ":$LIBRARY_PATH:" != *":$HOME/.local/lib:"* ]];
-then
-	LIBRARY_PATH="${LIBRARY_PATH:+"$LIBRARY_PATH:"}$HOME/.local/lib"
-fi
+[ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.local/include" ] && [[ ":$C_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]] && C_INCLUDE_PATH="${C_INCLUDE_PATH:+"$C_INCLUDE_PATH:"}$HOME/.local/include"
+[ -d "$HOME/.local/include" ] && [[ ":$CPLUS_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]] && CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH:+"$CPLUS_INCLUDE_PATH:"}$HOME/.local/include"
+[ -d "$HOME/.local/lib" ] && [[ ":$LIBRARY_PATH:" != *":$HOME/.local/lib:"* ]] && LIBRARY_PATH="${LIBRARY_PATH:+"$LIBRARY_PATH:"}$HOME/.local/lib"
 
 if [ -d "$HOME/.local/lib/pkgconfig" ] && [[ ":$PKG_CONFIG_PATH:" != *":$HOME/.local/lib/pkgconfig:"* ]];
 then
