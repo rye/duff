@@ -2,28 +2,14 @@
 [ -d "$HOME/.local/include" ] && [[ ":$C_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]] && C_INCLUDE_PATH="${C_INCLUDE_PATH:+"$C_INCLUDE_PATH:"}$HOME/.local/include"
 [ -d "$HOME/.local/include" ] && [[ ":$CPLUS_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]] && CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH:+"$CPLUS_INCLUDE_PATH:"}$HOME/.local/include"
 [ -d "$HOME/.local/lib" ] && [[ ":$LIBRARY_PATH:" != *":$HOME/.local/lib:"* ]] && LIBRARY_PATH="${LIBRARY_PATH:+"$LIBRARY_PATH:"}$HOME/.local/lib"
+[ -d "$HOME/.local/lib/pkgconfig" ] && [[ ":$PKG_CONFIG_PATH:" != *":$HOME/.local/lib/pkgconfig:"* ]] && PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+"$PKG_CONFIG_PATH:"}$HOME/.local/lib/pkgconfig"
 
-if [ -d "$HOME/.local/lib/pkgconfig" ] && [[ ":$PKG_CONFIG_PATH:" != *":$HOME/.local/lib/pkgconfig:"* ]];
-then
-	PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+"$PKG_CONFIG_PATH:"}$HOME/.local/lib/pkgconfig"
-fi
+which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1 && PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 
-if [ -L "$HOME/.local/java/latest" ];
-then
-	JAVA_HOME="$HOME/.local/java/latest"
-	PATH="$HOME/.local/java/latest/bin:$PATH"
-fi
+[ -d "/usr/local/heroku/bin" ] && [[ ":$PATH:" != *":/usr/local/heroku/bin:"* ]] && PATH="/usr/local/heroku/bin:$PATH"
 
-if [ -L "$HOME/.local/ant/latest" ];
-then
-	ANT_HOME="$HOME/.local/ant/latest"
-	PATH="$HOME/.local/ant/latest/bin:$PATH"
-fi
-
-if which ruby >/dev/null && which gem >/dev/null;
-then
-	PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-fi
+[ -L "$HOME/.local/java/latest" ] && JAVA_HOME="$HOME/.local/java/latest" && PATH="$HOME/.local/java/latest/bin:$PATH"
+[ -L "$HOME/.local/ant/latest" ] && ANT_HOME="$HOME/.local/ant/latest" && PATH="$HOME/.local/ant/latest/bin:$PATH"
 
 # Do some magic to determine if we're a Mac OSX machine or nah.
 # Note: requires Homebrew's "coreutils" package to be installed.
@@ -38,25 +24,26 @@ then
 	fi
 fi
 
-if [ -f "$HOME/.local/.profile" ];
-then
-	source $HOME/.local/.profile
-fi
+[ -f "$HOME/.local/.profile" ] && source $HOME/.local/.profile
 
 # In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
 # variable pointing GPG to the gpg-agent socket. This little script will either start
 # gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
-if [ -n "$(pgrep gpg-agent)" ];
+if which gpg >/dev/null 2>&1 && which gpg-agent >/dev/null 2>&1;
 then
-	echo "[gpg] will connect to existing GPG daemon"
-else
-	echo "[gpg] starting new GPG daemon"
-	eval $(gpg-agent --daemon)
-fi
 
-if [ -d "/usr/local/heroku/bin" ];
-then
-	PATH="/usr/local/heroku/bin:$PATH"
+	if [ -n "$(pgrep gpg-agent)" ];
+	then
+		echo "[gpg] will connect to existing GPG daemon"
+	else
+		echo "[gpg] starting new GPG daemon"
+		eval $(gpg-agent --daemon)
+	fi
+
+else
+
+	echo "[gpg] GPG Agent or GPG not present; shirking responsibilities"
+
 fi
 
 export PATH

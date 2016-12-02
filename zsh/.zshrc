@@ -163,9 +163,8 @@ function precmd {
 	fi
 }
 
-function sudoit {
-	sudo $history[$[HISTCMD-1]]
-}
+# Runs the previous command with sudo
+function sudoit { sudo $history[$[HISTCMD-1]] }
 
 # A function to quickly dump the contents of a file.
 function lf {
