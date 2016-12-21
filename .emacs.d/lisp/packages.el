@@ -54,6 +54,9 @@
         dockerfile-mode
         ))
 
+;; Initialize the package repositories
+(package-initialize)
+
 ;; Installs the dependencies.
 (defun packages-install-dependencies (&optional all)
   "Installs the dependencies for this Emacs configuration.
