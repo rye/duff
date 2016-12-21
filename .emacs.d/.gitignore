@@ -1,6 +1,8 @@
-# Compiled, backup files.
+# Compiled files
 *.elc
-*.elc~
+
+# Backup files
+*~
 
 # Installed packages
 elpa/
