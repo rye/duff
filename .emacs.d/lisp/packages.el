@@ -37,6 +37,7 @@
         web-mode
         gitignore-mode
         smart-tabs-mode
+        nginx-mode
 
         ;; bullshit
         nyan-mode
