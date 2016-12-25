@@ -150,7 +150,7 @@ function precmd {
 
 	prompt_ssh=""
 
-	if env | grep -q ^SSH_CLIENT=;
+	if env | grep -q "^SSH_CLIENT\=";
 	then
 		prompt_ssh="`start_color green unbold``whoami``end_color`@`start_color yellow unbold``hostname``end_color`:"
 	fi
