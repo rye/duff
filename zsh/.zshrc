@@ -133,11 +133,11 @@ function precmd {
 
 		if [[ "$dirty" = "0" ]];
 		then
-			prefix="`start_color red unbold`("
-			suffix=")"
+			prefix="g:`start_color red unbold`"
+			suffix=""
 		else
-			prefix="`start_color green unbold`("
-			suffix=")"
+			prefix="g:`start_color green unbold`"
+			suffix=""
 		fi
 
 		if [ $branch ];
