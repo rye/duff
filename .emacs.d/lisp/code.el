@@ -161,4 +161,8 @@
 (setq-default require-final-newline t)
 
 ;; Set the default maximum Git commit summary length.
+;;
+;; Note that there is no maximum, but 50 is a commonly-accepted max.
+;;  - http://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting
+;;  - https://github.com/tpope/vim-git/issues/29
 (setq git-commit-summary-max-length 50)
