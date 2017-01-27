@@ -108,10 +108,10 @@
 
 ;; Add configuration for fic-mode to allow the use of
 ;; fic-mode whenever in prog-mode
-(if (require 'fic-mode nil 'no-error)
+(if (require 'hl-todo nil 'no-error)
     (add-hook 'prog-mode-hook
               (lambda ()
-                (fic-mode))))
+                (hl-todo-mode t))))
 
 
 ;; When finding files, don't ask the user whether to follow a symbolic
