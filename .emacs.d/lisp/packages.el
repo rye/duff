@@ -45,8 +45,8 @@
         ;; highlighted delimiters to make editing a bit easier
         rainbow-delimiters
 
-        ;; for displaying TODO, FIXIT, etc. keywords
-        fic-mode
+        ;; Highlight words like TODO, FIXME, HACK, KLUDGE, HOLD, ???
+        hl-todo
 
         ;; for editing Docker-related files
         docker
