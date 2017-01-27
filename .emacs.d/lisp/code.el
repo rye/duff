@@ -93,13 +93,13 @@
                                       ("load-theme" . font-lock-builtin-face)
                                       ("add-to-list" . font-lock-builtin-face)))))
 
-      ;; (if (require 'python-mode nil 'no-error)
-      ;;     (progn
-      ;;       (add-hook 'python-mode-hook
-      ;;                 (lambda ()
-      ;;                   (setq python-smart-indentation nil)
-      ;;                   (setq python-indent-offset tab-width)
-      ;;                   (setq indent-tabs-mode t)))))
+      (if (require 'python-mode nil 'no-error)
+          (progn
+            (add-hook 'python-mode-hook
+                      (lambda ()
+                        (setq python-smart-indentation nil)
+                        (setq python-indent-offset tab-width)
+                        (setq indent-tabs-mode t)))))
 
       (if (require 'web-mode nil 'no-error)
           (progn
