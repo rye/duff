@@ -157,7 +157,7 @@
 ;; Delete annoying trailing whitespace.
 (add-hook 'before-save-hook 'hooks/global--delete-trailing-whitespace)
 
-;; Require final newline
+;; Require final newline.
 (setq-default require-final-newline t)
 
 ;; Set the default maximum Git commit summary length.
