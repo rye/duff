@@ -42,18 +42,11 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
-;; Customize the mode-line.
-(setq-default mode-line-format
-              '("%e"
-                "<%*%+>"
-                "%@"
-                mode-line-frame-identification
-                (#("%16b" 0 4 (local-map mode-line-highlight face mode-line-buffer-id)))
-                " "
-                (#("%[" 0 2 ()) "<" (:propertize ("" mode-name)) ("" mode-line-process) (:propertize ("" minor-mode-alist)) #("%n" 0 2 ()) ">" #("%]" 0 2 ()))
-                " "
-                "<%l,%c>"
-                (vc-mode vc-mode)))
+;; Mode line configuration.
+(require 'mode-line)
+(mode-line--set-format)
+(mode-line--toggle-time-display)
+(mode-line--toggle-battery-display)
 
 ;; Improve unique buffer name behavior.
 (require 'uniquify)
