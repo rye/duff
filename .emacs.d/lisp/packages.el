@@ -53,6 +53,12 @@
         docker-api
         docker-tramp
         dockerfile-mode
+
+        ;; Code completion
+        auto-complete
+        auto-complete-nxml
+        auto-complete-c-headers
+        auto-complete-exuberant-ctags
         ))
 
 ;; Initialize the package repositories
