@@ -16,8 +16,9 @@
                     (vc-mode vc-mode)
                     " "
                     mode-line-misc-info))
+
     (setq-default battery-mode-line-format " |%b%p%%, %t| ")
-    (setq display-time-format " %Y-%m-%d, %H:%M ")
+    (setq display-time-format " %H:%M ")
     (setq display-time-default-load-average nil)))
 
 (defun mode-line--toggle-time-display ()

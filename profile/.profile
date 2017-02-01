@@ -26,24 +26,24 @@ fi
 
 [ -f "$HOME/.local/.profile" ] && source $HOME/.local/.profile
 
-# In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
-# variable pointing GPG to the gpg-agent socket. This little script will either start
-# gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
-if which gpg >/dev/null 2>&1 && which gpg-agent >/dev/null 2>&1;
+if [ -z ${TERM+__nilstring__} ] || [[ $TERM == "dumb" ]];
 then
-
-	if [ -n "$(pgrep gpg-agent)" ];
-	then
-		echo "[gpg] will connect to existing GPG daemon"
-	else
-		echo "[gpg] starting new GPG daemon"
-		eval $(gpg-agent --daemon)
-	fi
-
 else
-
-	echo "[gpg] GPG Agent or GPG not present; shirking responsibilities"
-
+    # In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
+    # variable pointing GPG to the gpg-agent socket. This little script will either start
+    # gpg-agent or set up the GPG_AGENT_INFO variable if it's already running.
+    if which gpg >/dev/null 2>&1 && which gpg-agent >/dev/null 2>&1;
+    then
+	    if [ -n "$(pgrep gpg-agent)" ];
+	    then
+		    echo "[gpg] will connect to existing GPG daemon"
+	    else
+		    echo "[gpg] starting new GPG daemon"
+		    eval $(gpg-agent --daemon)
+	    fi
+    else
+	    echo "[gpg] GPG Agent or GPG not present; shirking responsibilities"
+    fi
 fi
 
 export PATH
