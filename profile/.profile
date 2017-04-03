@@ -4,8 +4,6 @@
 [ -d "$HOME/.local/lib" ] && [[ ":$LIBRARY_PATH:" != *":$HOME/.local/lib:"* ]] && LIBRARY_PATH="${LIBRARY_PATH:+"$LIBRARY_PATH:"}$HOME/.local/lib"
 [ -d "$HOME/.local/lib/pkgconfig" ] && [[ ":$PKG_CONFIG_PATH:" != *":$HOME/.local/lib/pkgconfig:"* ]] && PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+"$PKG_CONFIG_PATH:"}$HOME/.local/lib/pkgconfig"
 
-which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1 && PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-
 [ -d "/usr/local/heroku/bin" ] && [[ ":$PATH:" != *":/usr/local/heroku/bin:"* ]] && PATH="/usr/local/heroku/bin:$PATH"
 
 [ -L "$HOME/.local/java/latest" ] && JAVA_HOME="$HOME/.local/java/latest" && PATH="$HOME/.local/java/latest/bin:$PATH"
@@ -23,6 +21,8 @@ then
 		PATH="/usr/local/sbin:$PATH"
 	fi
 fi
+
+which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1 && PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 
 [ -f "$HOME/.local/.profile" ] && source $HOME/.local/.profile
 
