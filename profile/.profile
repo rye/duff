@@ -28,6 +28,7 @@ which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1 && PATH="$(ruby -rubygem
 
 if [ -z ${TERM+__nilstring__} ] || [[ $TERM == "dumb" ]];
 then
+    echo "TERM not set or dumb..."
 else
     # In order for gpg to find gpg-agent, gpg-agent must be running, and there must be an env
     # variable pointing GPG to the gpg-agent socket. This little script will either start
