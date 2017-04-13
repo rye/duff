@@ -181,10 +181,5 @@ function lf {
 
 [ -e "${HOME}/.iterm2_shell_integration.zsh" ] && source "${HOME}/.iterm2_shell_integration.zsh"
 
-if [ -d $HOME/Software/apache-ant-1.9.4/bin ];
-then
-	PATH="$PATH:$HOME/Software/apache-ant-1.9.4/bin"
-fi
-
 # added by travis gem
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
+[ -f "$HOME/.travis/travis.sh" ] && source $HOME/.travis/travis.sh

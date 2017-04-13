@@ -9,6 +9,8 @@
 [ -L "$HOME/.local/java/latest" ] && JAVA_HOME="$HOME/.local/java/latest" && PATH="$HOME/.local/java/latest/bin:$PATH"
 [ -L "$HOME/.local/ant/latest" ] && ANT_HOME="$HOME/.local/ant/latest" && PATH="$HOME/.local/ant/latest/bin:$PATH"
 
+[ -d "$HOME/Software/apache-ant-1.9.4/bin" ] && PATH="$HOME/Software/apache-ant-1.9.4/bin:$PATH"
+
 # Do some magic to determine if we're a Mac OSX machine or nah.
 # Note: requires Homebrew's "coreutils" package to be installed.
 if which guname >/dev/null 2>&1;
