@@ -93,13 +93,13 @@
                                       ("load-theme" . font-lock-builtin-face)
                                       ("add-to-list" . font-lock-builtin-face)))))
 
-      ;; (if (require 'python-mode nil 'no-error)
-      ;;     (progn
-      ;;       (add-hook 'python-mode-hook
-      ;;                 (lambda ()
-      ;;                   (setq python-smart-indentation nil)
-      ;;                   (setq python-indent-offset tab-width)
-      ;;                   (setq indent-tabs-mode t)))))
+      (if (require 'python-mode nil 'no-error)
+          (progn
+            (add-hook 'python-mode-hook
+                      (lambda ()
+                        (setq python-smart-indentation nil)
+                        (setq python-indent-offset tab-width)
+                        (setq indent-tabs-mode t)))))
 
       (if (require 'web-mode nil 'no-error)
           (progn
@@ -157,8 +157,12 @@
 ;; Delete annoying trailing whitespace.
 (add-hook 'before-save-hook 'hooks/global--delete-trailing-whitespace)
 
-;; Require final newline
+;; Require final newline.
 (setq-default require-final-newline t)
 
 ;; Set the default maximum Git commit summary length.
+;;
+;; Note that there is no maximum, but 50 is a commonly-accepted max.
+;;  - http://stackoverflow.com/questions/2290016/git-commit-messages-50-72-formatting
+;;  - https://github.com/tpope/vim-git/issues/29
 (setq git-commit-summary-max-length 50)

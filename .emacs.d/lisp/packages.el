@@ -14,45 +14,56 @@
 
 (setq packages--recommendation-list
       '(
-        ;; make Emacs great again
+        ;; Handy tools
         magit
         smex
         smartparens
         editorconfig
         robe
+        multi-term
 
-        ;; themes
+        ;; Themes (solarized is primary, but we have some other options)
         solarized-theme
         tao-theme
         ample-theme
         jazz-theme
 
-        ;; editing modes for various files
+        ;; RSpec mode
         rspec-mode
+
+        ;; Configuration file modes
         yaml-mode
-        multi-term
-        markdown-mode
-        haskell-mode
-        coffee-mode
-        web-mode
-        gitignore-mode
-        smart-tabs-mode
         nginx-mode
+        gitignore-mode
+        dockerfile-mode
 
-        ;; bullshit
-        nyan-mode
+        ;; Text file modes
+        markdown-mode
 
-        ;; highlighted delimiters to make editing a bit easier
+        ;; Special/Enhanced language modes
+        web-mode
+        coffee-mode
+        haskell-mode
+
+        ;; Smart Tabs
+        smart-tabs-mode
+
+        ;; Highlighted Delimiters
         rainbow-delimiters
 
-        ;; for displaying TODO, FIXIT, etc. keywords
-        fic-mode
+        ;; Highlight words like TODO, FIXME, HACK, KLUDGE, HOLD, ???
+        hl-todo
 
-        ;; for editing Docker-related files
+        ;; Docker interaction
         docker
         docker-api
         docker-tramp
-        dockerfile-mode
+
+        ;; Code completion
+        auto-complete
+        auto-complete-nxml
+        auto-complete-c-headers
+        auto-complete-exuberant-ctags
         ))
 
 ;; Initialize the package repositories
