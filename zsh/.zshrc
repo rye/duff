@@ -12,6 +12,12 @@ colors
 # Enable corrections
 setopt correct
 
+# Use ZSH autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh >/dev/null 2>&1
+
+SAVEHIST=16384
+HISTFILE=~/.zsh_history
+
 function start_color {
 	color_name="$1"
 	bold="$2"
