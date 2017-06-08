@@ -10,6 +10,7 @@
 [ -L "$HOME/.local/ant/latest" ] && ANT_HOME="$HOME/.local/ant/latest" && PATH="$HOME/.local/ant/latest/bin:$PATH"
 
 [ -d "$HOME/Software/apache-ant-1.9.4/bin" ] && PATH="$HOME/Software/apache-ant-1.9.4/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 
 # Do some magic to determine if we're a Mac OSX machine or nah.
 # NOTE: Requires GNU coreutils to be installed via Homebrew to properly get shit going.
