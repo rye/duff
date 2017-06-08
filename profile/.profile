@@ -12,7 +12,7 @@
 [ -d "$HOME/Software/apache-ant-1.9.4/bin" ] && PATH="$HOME/Software/apache-ant-1.9.4/bin:$PATH"
 
 # Do some magic to determine if we're a Mac OSX machine or nah.
-# Note: requires Homebrew's "coreutils" package to be installed.
+# NOTE: Requires GNU coreutils to be installed via Homebrew to properly get shit going.
 if which guname >/dev/null 2>&1;
 then
 	if [ "`guname -o`" = "Darwin" ];
