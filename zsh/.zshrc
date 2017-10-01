@@ -189,3 +189,5 @@ function lf {
 
 # added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source $HOME/.travis/travis.sh
+
+which thefuck >/dev/null 2>&1 && eval $(thefuck --alias)

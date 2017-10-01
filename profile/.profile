@@ -12,6 +12,10 @@
 [ -d "$HOME/Software/apache-ant-1.9.4/bin" ] && PATH="$HOME/Software/apache-ant-1.9.4/bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 
+[ -d "/Volumes/Tritium/Development/Android" ] && ANDROID_HOME="/Volumes/Tritium/Development/Android/sdk" && export ANDROID_HOME
+[ -d "$ANDROID_HOME/tools" ] && PATH="$ANDROID_HOME/tools:$PATH"
+[ -d "$ANDROID_HOME/platform-tools" ] && PATH="$ANDROID_HOME/platform-tools:$PATH"
+
 # Do some magic to determine if we're a Mac OSX machine or nah.
 # NOTE: Requires GNU coreutils to be installed via Homebrew to properly get shit going.
 if which guname >/dev/null 2>&1;
@@ -45,9 +49,13 @@ else
 		    echo "[gpg] starting new GPG daemon"
 		    eval $(gpg-agent --daemon)
 	    fi
+
+	    GPG_TTY=$(tty)
     else
 	    echo "[gpg] GPG Agent or GPG not present; shirking responsibilities"
     fi
 fi
+
+
 
 export PATH
