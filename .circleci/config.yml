@@ -1,0 +1,21 @@
+---
+version: 2
+jobs:
+  foo:
+    docker:
+      - image: circleci/ruby:2.5.1
+      - image: circleci/ruby:rc
+      - image: circleci/ruby:2.4.4
+      - image: circleci/ruby:2.3.7
+    steps:
+      - run: ruby -v
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run: bundle install --jobs=4 --retry=3 --frozen --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
