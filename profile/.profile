@@ -1,3 +1,5 @@
+#!/bin/sh
+
 [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]] && PATH="$HOME/.local/bin:$PATH"
 [ -d "$HOME/.local/include" ] && [[ ":$C_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]] && C_INCLUDE_PATH="${C_INCLUDE_PATH:+"$C_INCLUDE_PATH:"}$HOME/.local/include"
 [ -d "$HOME/.local/include" ] && [[ ":$CPLUS_INCLUDE_PATH:" != *":$HOME/.local/include:"* ]] && CPLUS_INCLUDE_PATH="${CPLUS_INCLUDE_PATH:+"$CPLUS_INCLUDE_PATH:"}$HOME/.local/include"
