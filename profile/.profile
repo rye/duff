@@ -30,7 +30,7 @@ then
 	fi
 fi
 
-which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1 && PATH="$(ruby -rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+which ruby >/dev/null 2>&1 && which gem >/dev/null 2>&1 && PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
 
 [ -f "$HOME/.local/.profile" ] && source $HOME/.local/.profile
 
