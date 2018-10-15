@@ -4,9 +4,6 @@ jobs:
   build:
     docker:
     - image: circleci/ruby:2.5.1
-    - image: circleci/ruby:rc
-    - image: circleci/ruby:2.4.4
-    - image: circleci/ruby:2.3.7
     steps:
     - run: ruby -v
     - checkout
