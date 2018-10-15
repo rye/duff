@@ -11,7 +11,6 @@
 [ -L "$HOME/.local/java/latest" ] && JAVA_HOME="$HOME/.local/java/latest" && PATH="$HOME/.local/java/latest/bin:$PATH"
 [ -L "$HOME/.local/ant/latest" ] && ANT_HOME="$HOME/.local/ant/latest" && PATH="$HOME/.local/ant/latest/bin:$PATH"
 
-[ -d "$HOME/Software/apache-ant-1.9.4/bin" ] && PATH="$HOME/Software/apache-ant-1.9.4/bin:$PATH"
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 
 [ -d "/Volumes/Tritium/Development/Android" ] && ANDROID_HOME="/Volumes/Tritium/Development/Android/sdk" && export ANDROID_HOME
