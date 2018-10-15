@@ -57,6 +57,5 @@ else
     fi
 fi
 
-
-
-export PATH
+export GOPATH="$HOME/.local/go"
+export PATH="$HOME/.cargo/bin:$PATH"
